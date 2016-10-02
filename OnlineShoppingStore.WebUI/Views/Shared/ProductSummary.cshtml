@@ -1,0 +1,27 @@
+﻿@model OnlineShoppingStore.Domain.Entities.Product
+
+<div class=" row" style="margin-right:5px; margin-bottom:5px; background-color:white; padding: 6px;">
+    <div class="col-md-2 col-lg-2 col-sm-2" style="background-color:black;">
+        
+            <img src="@Model.ImagePath" class="img-responsive" />
+        </div>
+    <div class="col-md-10 col-lg-10 col-sm-10" style="margin-top:-13px;">
+        <h3>
+            <span class="label" style="background-color:#474D70;">
+                <strong style="">@Model.Name </strong>
+            </span>
+            <span class="pull-right label label-danger">@Model.Price.ToString("c")</span>
+        </h3>
+
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            <div class="pull-right">
+                @Html.HiddenFor(x => x.ProductId)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" class="btn btn-success" value="Add to cart" />
+            </div>
+        }
+
+        <span class="lead">@Model.Description</span>
+    </div>
+</div>

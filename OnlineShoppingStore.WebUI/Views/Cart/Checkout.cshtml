@@ -1,0 +1,49 @@
+﻿@model OnlineShoppingStore.Domain.Entities.ShippingDetails
+@{
+    ViewBag.Title = "Online Shopping Store: Checkout";
+}
+
+
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-12">
+                @Html.ValidationSummary()
+            </div>
+            
+            
+            <h3> &nbsp; Deliver to</h3>
+            <div class="form-group col-md-6">
+                <label>Name:</label>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+            <p style="color:red;">&nbsp;&nbsp;&nbsp; Enter your (U.K) PhoneNo starting 44************</p>
+            foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "Name" && property.PropertyName !=
+                    "GiftWrap")
+                {
+                    <div class="form-group col-md-6">
+                        <label>
+                            @(property.DisplayName ?? property.PropertyName)
+                        </label>
+                        @Html.TextBox(property.PropertyName, null, new
+               {
+                   @class = "form-control"
+               })
+                    </div>
+                }
+            }
+            <h4>&nbsp;&nbsp;&nbsp;Options</h4>
+            <div class="checkbox col-md-4">
+                <label>
+                    @Html.EditorFor(x => x.GiftWrap)
+                    Gift wrap these items
+                </label>
+            </div>
+    <div class="col-md-4">
+        <br />
+        <input class="btn btn-lg btn-primary" type="submit" value="Complete order" />
+    </div>
+        }
+    </div>

@@ -1,0 +1,84 @@
+﻿@model OnlineShoppingStore.WebUI.Models.LoginViewModel
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<script>
+    window.addEventListener("load", function () {
+        var load_screen = document.getElementById("load_screen");
+        document.body.removeChild(load_screen);
+    });
+</script>
+
+<div class="container">
+    <div class="navbar navbar" role="navigation" style="background-color:transparent; margin-bottom: -5px;">
+        <a class="navbar-brand" href="#">
+            @*<span class="hidden-xs">Online Shopping Store</span>
+                <div class="visible-xs">Online</div>
+                <div class="visible-xs">Shopping</div>
+                <div class="visible-xs">Store</div>*@
+
+            <img src="~/images/slogo2.png" id="logo" style="height: 250%; margin-left: 0px; margin-top: -13px;" />
+        </a>
+        @Html.Action("Summary", "Cart")
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <br />
+            <div class="panel panel-primary">
+                <div class="panel-heading " >
+                    <h3><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>  Log In</h3>
+                </div>
+                <div class="panel-body">
+                    <p class="lead">
+                        Please log in to access the administration area:
+                    </p>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary()
+                        <div class="form-group">
+                            <label>User Name:</label>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                        <input type="submit" value="Log in" class="btn btn-primary" />
+                    }
+                </div>
+            </div>
+
+            <a href="@Url.Action("List", "Product")"><span class="glyphicon glyphicon-arrow-left"> Home</span></a>
+
+        </div>
+        <div class="col-md-8">
+            <br /> <br />
+            <img src="~/images/loginImage.gif" class="img-responsive" alt="" />
+
+            <hr>
+            <div class="alert alert-info col-md-6">
+                <strong><span class="glyphicon glyphicon-lock" style="margin-bottom: 12px; color:#F56236;"></span>&nbsp;&nbsp;LOGIN DETAILS FOR TESTING:</strong></br>
+                &nbsp;&nbsp;<strong>(ADMIN)</strong> Username: <b style="color:#F56236;">saideep</b>   
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password:&nbsp; <b>test</b>
+                </br>
+
+            </div>
+
+        </div>
+</div>
+
+
+
+
